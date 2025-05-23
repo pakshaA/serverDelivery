@@ -15,6 +15,7 @@ type DadataResponse = {
 export const getAddress = async (req: Request, res: Response) => {
     try {
         const { query } = req.query;
+        const { city } = req.query;
         
         // Проверка параметров
         if (!query || typeof query !== 'string') {
@@ -34,7 +35,7 @@ export const getAddress = async (req: Request, res: Response) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({ query, count: 10 }) // Добавим лимит результатов
+            body: JSON.stringify({ query, count: 10, locations: [{ country: 'Россия', city: city }] }) // Добавим лимит результатов
         });
         
         if (!response.ok) {
