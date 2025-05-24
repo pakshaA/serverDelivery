@@ -9,6 +9,7 @@ import logoutRouter from './routers/logoutRouter';
 import { db_connect } from './services/connect';
 import cookieParser from 'cookie-parser';
 import createDeliveryRouter from './routers/createDelivery';
+import getDeliveriesRouter from './routers/getDeliveries';
 
 dotenv.config();
 try {
@@ -35,6 +36,7 @@ try {
     app.use('/api', checkAuthRouter);
     app.use('/api', logoutRouter);
     app.use('/api', createDeliveryRouter);
+    app.use('/api', getDeliveriesRouter);
 
     app.listen(PORT, () => {
     console.log(`Сервер запущен`);
