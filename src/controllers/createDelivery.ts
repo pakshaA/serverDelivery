@@ -17,20 +17,22 @@ export const createDelivery = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Отсутствуют обязательные поля" });
     }
 
-    const id = Date.now().toString();
     const decoded: any = jwt.verify(token, process.env.SECRET!);
     const userId = decoded.id;
-    
-    await User.findByIdAndUpdate(userId, { $push: { deliveres: id } });
 
     const newDelivery = new Delivery({
       sender,
       receiver,
       packageInfo,
-      shipmentId: id,
     });
 
     await newDelivery.save();
+
+    await User.findByIdAndUpdate(
+      userId,
+      { $push: { deliveries: newDelivery._id } },
+      { new: true }
+    );
 
     res.status(201).json({
       message: "Доставка успешно создана",
