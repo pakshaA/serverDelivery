@@ -10,13 +10,7 @@ export const createDelivery = async (req: Request, res: Response) => {
       return res.status(401).json({ message: "Не авторизован" });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
-
     const { sender, receiver, packageInfo } = req.body;
-
-    if (!decoded.id) {
-      return res.status(401).json({ message: "Не авторизован"});
-    }
 
     if (!sender || !receiver || !packageInfo) {
       return res.status(400).json({ message: "Отсутствуют обязательные поля" });
