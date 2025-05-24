@@ -11,6 +11,7 @@ export const createDelivery = async (req: Request, res: Response) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
+    console.log(decoded, 'decoded');
 
     const { sender, receiver, packageInfo } = req.body;
 
