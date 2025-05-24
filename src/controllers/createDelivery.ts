@@ -20,6 +20,8 @@ export const createDelivery = async (req: Request, res: Response) => {
     const decoded: any = jwt.verify(token, process.env.SECRET!);
     const userId = decoded.id;
 
+    console.log("ID пользователя:", userId);
+    console.log('decoded', decoded)
     const newDelivery = new Delivery({
       sender,
       receiver,
@@ -34,6 +36,9 @@ export const createDelivery = async (req: Request, res: Response) => {
       { $push: { deliveries: newDelivery._id } },
       { new: true }
     );
+
+    const updatedUser = await User.findById(userId).populate("deliveries");
+    console.log("Пользователь с доставками:", updatedUser);
 
     res.status(201).json({
       message: "Доставка успешно создана",
