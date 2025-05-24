@@ -18,7 +18,7 @@ export const createDelivery = async (req: Request, res: Response) => {
     }
 
     const decoded: any = jwt.verify(token, process.env.SECRET!);
-    const userId = decoded.id;
+    const userId = decoded.userId;
 
     console.log("ID пользователя:", userId);
     console.log('decoded', decoded)
