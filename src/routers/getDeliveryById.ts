@@ -3,7 +3,7 @@ import { getDeliveryByShipmentId } from "../controllers/getDeliveryById";
 
 const getDeliveryByIdRouter = express.Router();
 
-getDeliveryByIdRouter.get("/get-delivery-by-id", (req: Request, res: Response, next: NextFunction) => {
+getDeliveryByIdRouter.get("/get-delivery-by-id/:shipmentId", (req: Request, res: Response, next: NextFunction) => {
     getDeliveryByShipmentId(req, res).catch(next);
 });
 
