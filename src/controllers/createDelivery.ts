@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Delivery from "../models/Delivery";
 import jwt from "jsonwebtoken";
+import User from "../models/User";
 
 export const createDelivery = async (req: Request, res: Response) => {
   try {
@@ -16,10 +17,17 @@ export const createDelivery = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Отсутствуют обязательные поля" });
     }
 
+    const id = Date.now().toString();
+    const decoded: any = jwt.verify(token, process.env.SECRET!);
+    const userId = decoded.id;
+    
+    await User.findByIdAndUpdate(userId, { $push: { deliveres: id } });
+
     const newDelivery = new Delivery({
       sender,
       receiver,
       packageInfo,
+      shipmentId: id,
     });
 
     await newDelivery.save();
