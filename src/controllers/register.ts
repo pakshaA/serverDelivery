@@ -10,10 +10,10 @@ const SECRET = process.env.SECRET
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body
+    const { email, password, id } = req.body
 
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Email и пароль обязательны' })
+    if (!email || !password || !id) {
+      return res.status(400).json({ message: 'Email, пароль и id обязательны' })
     }
 
     const existingUser = await User.findOne({ email })
@@ -23,11 +23,11 @@ export const registerUser = async (req: Request, res: Response) => {
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    const newUser = new User({ email, password: hashedPassword })
+    const newUser = new User({ email, password: hashedPassword, id })
     await newUser.save()
 
     const token = jwt.sign(
-      { id: newUser._id, email: newUser.email },
+      { id: newUser.id, email: newUser.email },
       SECRET!,
       { expiresIn: '7d' }
     )
