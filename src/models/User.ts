@@ -3,8 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IUser extends Document {
     email: string;
     password: string;
-    deliveres: string[];
-    id: string;
+    deliveries: mongoose.Types.ObjectId[];
 }
 
 const userSchema = new Schema({
@@ -14,10 +13,6 @@ const userSchema = new Schema({
         unique: true
     },
     password: {
-        type: String,
-        required: true
-    },
-    id: {
         type: String,
         required: true
     },

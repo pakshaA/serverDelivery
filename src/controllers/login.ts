@@ -19,7 +19,7 @@ export const login = async (req: Request, res: Response) => {
             return res.status(401).json({ message: "Неверный email или пароль" });
         }
 
-        const token = jwt.sign({ userId: user.id, email: user.email }, process.env.SECRET as string, {
+        const token = jwt.sign({ userId: user._id, email: user.email }, process.env.SECRET as string, {
             expiresIn: "7d",
         });
 
