@@ -21,9 +21,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    deliveries: {
-        type: Array,
-    }
+    deliveries: [{ type: mongoose.Schema.Types.ObjectId, ref: "Delivery" }],
 });
 
 export default mongoose.model<IUser>('User', userSchema);

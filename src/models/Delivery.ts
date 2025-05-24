@@ -59,6 +59,7 @@ const DeliverySchema: Schema = new Schema({
   },
   status: { type: String, default: 'created' },
   packageInfo: { type: packageInfoSchema, required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 })
 
 export default mongoose.models.Delivery || mongoose.model<IDelivery>('Delivery', DeliverySchema)

@@ -24,6 +24,7 @@ export const createDelivery = async (req: Request, res: Response) => {
       sender,
       receiver,
       packageInfo,
+      user: userId,
     });
 
     await newDelivery.save();
