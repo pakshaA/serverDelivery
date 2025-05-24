@@ -4,6 +4,7 @@ export interface IUser extends Document {
     email: string;
     password: string;
     deliveres: string[];
+    id: string;
 }
 
 const userSchema = new Schema({
@@ -15,6 +16,13 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    id: {
+        type: String,
+        required: true
+    },
+    deliveres: {
+        type: Array,
     }
 });
 
