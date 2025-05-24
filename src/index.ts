@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import dadataRoutes from './routers/getAddressRouter';
 import registerRouter from './routers/register';
 import loginRouter from './routers/login';
+import checkAuthRouter from './routers/checkAuthRouter';
 import { db_connect } from './services/connect';
 
 dotenv.config();
@@ -27,6 +28,7 @@ try {
     app.use('/api', dadataRoutes);
     app.use('/api', registerRouter);
     app.use('/api', loginRouter);
+    app.use('/api', checkAuthRouter);
 
     app.listen(PORT, () => {
     console.log(`Сервер запущен`);
