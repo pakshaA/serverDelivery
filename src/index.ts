@@ -10,6 +10,7 @@ import { db_connect } from './services/connect';
 import cookieParser from 'cookie-parser';
 import createDeliveryRouter from './routers/createDelivery';
 import getDeliveriesRouter from './routers/getDeliveries';
+import getDeliveryByIdRouter from './routers/getDeliveryById';
 
 dotenv.config();
 try {
@@ -37,6 +38,7 @@ try {
     app.use('/api', logoutRouter);
     app.use('/api', createDeliveryRouter);
     app.use('/api', getDeliveriesRouter);
+    app.use('/api', getDeliveryByIdRouter);
 
     app.listen(PORT, () => {
     console.log(`Сервер запущен`);
