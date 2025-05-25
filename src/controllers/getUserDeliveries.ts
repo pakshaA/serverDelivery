@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User";
-import Delivery from "../models/Delivery";
 
 export const getUserDeliveries = async (req: Request, res: Response) => {
   try {

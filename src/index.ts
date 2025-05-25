@@ -20,7 +20,7 @@ try {
     db_connect()
 
     app.use(cors({
-        origin: 'http://localhost:3000', 
+        origin: 'https://logistic-diplom.vercel.app', 
         credentials: true 
     }))
     
